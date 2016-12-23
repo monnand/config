@@ -1,0 +1,119 @@
+set nocompatible
+
+" Explicitly set the Leader to comma. You you can use '\' (the default),
+" or anything else (some people like ';').
+let mapleader=','
+set background=dark
+
+"======================"
+" Vundle configuration "
+"======================"
+
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+if isdirectory(expand('$HOME/.vim/bundle/Vundle.vim'))
+  call vundle#begin()
+  " Required
+  Plugin 'VundleVim/Vundle.vim'
+  " Install plugins that come from github.  Once Vundle is installed, these can be
+  " installed with :PluginInstall
+  Plugin 'scrooloose/nerdcommenter'
+  " NERDTree
+  Plugin 'scrooloose/nerdtree'
+  nnoremap <leader>ne :NERDTree<CR>
+  Plugin 'Valloric/MatchTagAlways'
+  Plugin 'vim-scripts/netrw.vim'
+  Plugin 'tpope/vim-sensible'
+  Plugin 'SirVer/ultisnips'
+  Plugin 'spf13/vim-colors'
+  " Easy motion. A tutorial could be found here:
+  " http://net.tutsplus.com/tutorials/other/vim-essential-plugin-easymotion/
+  " Note: The default leader has been changed to <Leader><Leader>
+  " Type ,,w to see the magic happens.
+  Plugin 'Lokaltog/vim-easymotion'
+
+  " Works best with YCM
+  Plugin 'scrooloose/syntastic'
+
+  " Provide many default snippets for a variety of snippets.
+  " Uncomment and :PluginInstall to enable
+  Plugin 'honza/vim-snippets'
+
+  " Working with tmux
+  Plugin 'christoomey/vim-tmux-navigator'
+ 
+  " YouCompleteMe
+  " https://github.com/Valloric/YouCompleteMe
+  "
+  " Compile YCM:
+  "
+  " sudo apt-get install build-essential cmake
+  " sudo apt-get install python-dev
+  "
+  " cd ~/.vim/bundle/YouCompleteMe
+  " ./install.sh --clang-completer
+  Plugin 'Valloric/YouCompleteMe'
+
+  " let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+  let g:ycm_confirm_extra_conf = 0
+  " let g:ycm_server_use_vim_stdout = 1
+  " let g:ycm_server_log_level = 'debug'
+  nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+  call vundle#end()
+else
+  echomsg 'Vundle is not installed. You can install Vundle from'
+      \ 'https://github.com/VundleVim/Vundle.vim'
+endif
+
+filetype plugin indent on
+
+"===================="
+" Some basic options "
+"===================="
+
+" Enable syntax highlighting
+syntax on
+
+" Easier split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Easily change my vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" Easily quote something
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>l
+
+" do not use <esc>
+inoremap jk <esc>
+vnoremap jk <esc>
+
+" Uncomment if you want to map ; to : to cut down on chording
+" nnoremap ; :
+
+" Automatically change the working path to the path of the current file
+autocmd BufNewFile,BufEnter * silent! lcd %:p:h
+
+" Show relative line numbers
+" http://jeffkreeftmeijer.com/2012/relative-line-numbers-in-vim-for-super-fast-movement/
+set relativenumber
+nnoremap <C-N> :set relativenumber! number!<CR>
+
+" use » to mark Tabs and ° to mark trailing whitespace. This is a
+" non-obtrusive way to mark these special characters.
+set list listchars=tab:»\ ,trail:°
+
+" Highlight the search term when you search for it.
+set hlsearch
+
+" By default, it looks up man pages for the word under the cursor, which isn't
+" very useful, so we map it to something else.
+nnoremap <s-k> <CR>
+
+" Yank from the cursor to the end of the line
+nnoremap Y y$
