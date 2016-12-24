@@ -60,6 +60,12 @@ if isdirectory(expand('$HOME/.vim/bundle/Vundle.vim'))
   " let g:ycm_server_log_level = 'debug'
   nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
+  " Go
+  Plugin 'fatih/vim-go'
+  " Use goimports instead of gofmt.
+  let g:go_fmt_command = "goimports"
+  let g:go_fmt_autofmt = 1
+
   call vundle#end()
 else
   echomsg 'Vundle is not installed. You can install Vundle from'

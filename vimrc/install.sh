@@ -30,6 +30,10 @@ install-ycm() {
   ./install.sh --clang-completer
 }
 
+install-goimports() {
+  go get golang.org/x/tools/cmd/goimports
+}
+
 install-vundle
 ensure-package build-essential
 ensure-package cmake
@@ -40,3 +44,4 @@ vim +PluginClean +qall
 vim +PluginInstall +qall
 
 install-ycm
+install-goimports
