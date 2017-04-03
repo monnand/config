@@ -27,7 +27,7 @@ install-vundle() {
 install-ycm() {
   log-green Installing YCM
   cd ~/.vim/bundle/YouCompleteMe
-  ./install.sh --clang-completer
+  ./install.sh --clang-completer --gocode-completer
 }
 
 install-goimports() {
